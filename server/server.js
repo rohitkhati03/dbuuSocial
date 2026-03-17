@@ -1,15 +1,21 @@
 import express from "express";
 import dotenv from "dotenv";
-import connectDB from "./config/db.js";
-
 dotenv.config()
+import connectDB from "./config/db.js";
+import cookieParser from "cookie-parser";
+import authRoutes from "./routes/auth.routes.js"
+
+
 connectDB();
 
 const app = express();
+//Middleware
+ app.use(express.json());  // Parses incoming JSON body
+ app.use(express.urlencoded({extended:true})); // Parses form data
+ app.use(cookieParser());   // Lets us read cookies (for refresh token)
 
-//middleware for parsing
-app.use(express.json());
-
+//Routes
+app.use("/api/auth", authRoutes);
 const PORT = process.env.PORT||8080;
 
 app.listen(PORT, ()=>{
