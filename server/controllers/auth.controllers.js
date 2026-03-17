@@ -153,3 +153,30 @@ export const login = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
+//logout api
+
+export const logout = async (req, res)=>{
+    try{
+        // getting user form middleware
+        const UserId = req.user._id;
+
+        //removing refresh token
+        await User.findByIdAndUpdate(UserId, {
+            $unset:{refreshToken:1}
+        });
+
+        res.clearCookie("refreshToken",{
+             httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+        });
+
+        // response
+        return res.status(200).json({ message: "Logged out successfully" });
+    }
+    catch(error){
+        console.error("Logout error:", error);
+    return res.status(500).json({ message: "Internal server error" });
+    }
+}
