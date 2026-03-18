@@ -4,13 +4,16 @@ const PostSchema = new mongoose.Schema(
   {
     author: { type: Schema.Types.ObjectId, ref: "User", required: true },
     content: { type: String, maxlength: 2000 },
-    media: [
-      { type: String, type: { type: String, enum: ["images", "video"] } },
+    media: [{
+      // { type: String, type: { type: String, enum: ["images", "video"] } },
+      url:{type:String, required:true},
+      type:{type:String, enum:["images", "video"]},
+    }
     ],
     tags: [{ type: String }],
     category: {
       type: String,
-      enum: ["genetal", "academic", "events", "annoucement"],
+      enum: ["general", "academic", "events", "annoucement"],
     },
     department: { type: String },
     likes: [{ type: Schema.Types.ObjectId, ref: "User" }],
