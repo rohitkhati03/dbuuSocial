@@ -3,6 +3,7 @@ import { populate } from "dotenv";
 
 export const  createPost = async (req, res) => {
   try {
+    
     //  Take data from req
     const { content, media, tags, category, department } = req.body;
     // Validate
@@ -16,6 +17,7 @@ export const  createPost = async (req, res) => {
         author: req.user._id,
         content,
         tags: tags ||[],
+        media: media ||[],
         category:category || "general",
         department: department || req.user.department
     });
@@ -31,7 +33,7 @@ export const  createPost = async (req, res) => {
     res.status(500).json({
         success:false,
         message:"Error in creating post",
-        error: message.error,
+        error: error.message,
     });
   }
 };
