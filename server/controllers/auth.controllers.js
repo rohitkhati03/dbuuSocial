@@ -68,7 +68,7 @@ export const register = async (req, res) => {
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: process.envNODE_ENV === "production",
-      sameStie: "Strict",
+      sameSite: "Strict",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
     });
 
@@ -102,7 +102,7 @@ export const login = async (req, res) => {
     if (!email || !password) {
       return res
         .status(400)
-        .json({ message: "Email and passwordd are required" });
+        .json({ message: "Email and password are required" });
     }
 
     //fiding the user by email
