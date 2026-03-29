@@ -1,16 +1,177 @@
-# React + Vite
+# 🎓 UniConnect – Frontend (Client)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+UniConnect is a **full-stack campus social platform** designed to unify communication, academics, career opportunities, and student interactions into a single system.
 
-Currently, two official plugins are available:
+This repository contains the **frontend (client-side)** of the application, built using React, and structured to support **multiple modules and future scalability**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🧠 Project Vision
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+CampusConnect is not just a regular app — it is a **complete digital ecosystem for colleges**, aiming to replace:
 
-## Expanding the ESLint configuration
+* WhatsApp groups ❌
+* Notice boards ❌
+* Scattered portals ❌
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+With one unified platform ✅
+
+---
+
+## 🏗️ Frontend Role in Architecture
+
+The frontend acts as the **presentation layer** in a full-stack system:
+
+```id="arch"
+[ React Frontend ] ⇄ [ Node.js Backend ] ⇄ [ Database ]
+```
+
+It is responsible for:
+
+* Rendering UI components
+* Managing application state
+* Handling user interactions
+* Communicating with backend APIs
+* Providing a seamless user experience
+
+---
+
+## ⚙️ Tech Stack
+
+* ⚛️ React (Functional Components + Hooks)
+* 🎨 CSS3 (Modular, responsive, custom UI)
+* 🧠 JavaScript (ES6+)
+* 🔗 REST API (Backend integration)
+
+---
+
+## 🧩 Current Implementation
+
+### 🔹 Landing Page (Completed)
+
+* Responsive Navbar
+* Hero Section
+* Features Overview
+* Modules Showcase (interactive tabs)
+* How It Works
+* Testimonials
+* CTA Section
+* Footer
+
+---
+
+## 🚧 Upcoming Modules (Planned Features)
+
+The frontend is structured to support multiple pages and features:
+
+### 👤 Authentication System
+
+* Login / Signup
+* OTP verification (Email + Phone)
+* Role-based access
+
+### 🏠 User Dashboard
+
+* Personalized feed
+* Notifications
+* Quick access modules
+
+### 📰 Campus Feed
+
+* Social posts (text, images, updates)
+* Like, comment, share system
+* Stories feature
+
+### 💼 Career & Placement Module
+
+* Job & internship listings
+* Application tracking
+* Resume/profile matching
+
+### 📚 Academic Hub
+
+* Q&A discussion board
+* Notes & resources
+* Study groups
+
+### 📅 Events System
+
+* Event listings
+* RSVP system
+* Calendar integration
+
+### 📢 Notice Board
+
+* Official announcements
+* Department-specific updates
+
+### 👤 Profile System
+
+* Student portfolio
+* Skills, achievements, projects
+* Public + private views
+
+---
+
+## 📁 Folder Structure
+
+```id="structure2"
+client/
+│── src/
+│   ├── components/        # UI components
+│   ├── pages/             # Future page-level components
+│   ├── styles/            # CSS files
+│   ├── utils/             # Helper functions (future)
+│   ├── App.jsx
+│   └── main.jsx
+│
+└── package.json
+```
+
+---
+
+## 🔄 Data Flow
+
+1. User interacts with UI
+2. React manages state (useState / useEffect)
+3. API requests sent to backend
+4. Backend processes data
+5. UI updates dynamically
+
+---
+
+## 📱 UI & Design Approach
+
+* Fully responsive (Mobile-first)
+* Modular component architecture
+* Clean and scalable design system
+* Inspired by modern SaaS platforms (Stripe, Notion)
+
+---
+
+## 🚀 Setup & Run
+
+```id="run"
+cd client
+npm install
+npm run dev
+```
+
+---
+
+## 🔮 Future Scope
+
+* 🔐 Full authentication flow
+* ⚡ Real-time updates
+* 🎬 Advanced animations (Framer Motion)
+* 🌙 Dark/Light mode
+* 📊 Dashboard analytics
+* 📡 API integration with backend
+
+---
+
+## ⭐ Note
+
+This project is actively under development and aims to evolve into a **complete full-stack platform for campus management and student interaction**.
+
+If you like this project, give it a ⭐ on GitHub!
