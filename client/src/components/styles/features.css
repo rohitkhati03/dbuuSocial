@@ -1,0 +1,174 @@
+/* ── FEATURES ── */
+.features-section {
+  padding: 120px 0;
+}
+
+/* Header */
+.features-header {
+  max-width: 600px;
+}
+
+.section-tag {
+  display: inline-flex;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 30px;
+
+  background: rgba(79,110,247,0.1);
+  border: 1px solid rgba(79,110,247,0.25);
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #a5b4ff;
+
+  margin-bottom: 20px;
+}
+
+.section-headline {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.section-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.65;
+}
+
+/* ── GRID ── */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 56px;
+}
+
+/* ── CARD ── */
+.feature-card {
+  position: relative;
+  padding: 28px 24px;
+  border-radius: 18px;
+
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* Hover */
+.feature-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+}
+
+/* Top gradient line */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+/* Gradient variants */
+.fc-1::before { background: linear-gradient(90deg, var(--primary), var(--accent)); }
+.fc-2::before { background: linear-gradient(90deg, #ff6b6b, #ffd93d); }
+.fc-3::before { background: linear-gradient(90deg, #6bcb77, #14b8a6); }
+.fc-4::before { background: linear-gradient(90deg, #a855f7, var(--primary)); }
+.fc-5::before { background: linear-gradient(90deg, #ffd93d, #ff6b6b); }
+.fc-6::before { background: linear-gradient(90deg, #14b8a6, #6bcb77); }
+
+/* Wide cards */
+.feature-card.wide {
+  grid-column: span 2;
+}
+
+/* ── CONTENT ── */
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+
+  background: rgba(255,255,255,0.06);
+}
+
+.feature-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.feature-desc {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+}
+
+/* Tags */
+.feature-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.ftag {
+  padding: 4px 10px;
+  border-radius: 20px;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+
+  color: rgba(255,255,255,0.6);
+}
+
+/* ── RESPONSIVE ── */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .feature-card.wide {
+    grid-column: span 2;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card.wide {
+    grid-column: span 1;
+  }
+
+  .features-section {
+    padding: 80px 20px;
+  }
+}
