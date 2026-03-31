@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import styles from "../styles/Signup.module.css"; // ✅ FIXED
 
 export default function Signup() {
+  const navigate = useNavigate();
   return (
     <div className={styles.signup}>
       <div className={styles.container}>
@@ -13,7 +15,9 @@ export default function Signup() {
           initial={{ x: -80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
         >
-          <div className={styles.brand}>
+          <div className={styles.brand} onClick={()=>{
+            navigate("/")
+          }} >
             Uni<em><span>Connect</span></em>
           </div>
 
@@ -113,7 +117,7 @@ export default function Signup() {
             </button>
 
             <p className={styles.switch}>
-              Already have an account? <a href="/login">Log in</a>
+              Already have an account? <a href="/login" onClick={()=> navigate("/login")}>Log in</a>
             </p>
 
           </div>

@@ -1,11 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import "../styles/login.css";
 const Login = () => {
   const handleNavigation = (screen) => {
     console.log("Navigate to:", screen);
   };
-
+const navigate = useNavigate();
   return (
     <div className="cc-login">
 
@@ -18,7 +19,9 @@ const Login = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="cc-login__brand">
+          <div className="cc-login__brand" onClick={()=>{
+            navigate("/")
+          }}>
             Uni<em><span>Connect</span></em>
           </div>
 
@@ -122,7 +125,7 @@ const Login = () => {
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.03 }}
               className="cc-login__btnSecondary"
-              onClick={() => handleNavigation("/signup")}
+              onClick={() => navigate("/signup")}
             >
               Create account
             </motion.button>

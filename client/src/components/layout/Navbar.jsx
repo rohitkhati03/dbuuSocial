@@ -1,66 +1,126 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "../styles/navbar.css";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [active, setActive] = useState("features");
+  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
+  // Smooth scroll
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      setMenuOpen(false);
+    }
+  };
+
+  // Detect active section on scroll
+  useEffect(() => {
+    const sections = ["features", "how", "modules", "testimonials", "cta"];
+
+    const handleScroll = () => {
+      let current = "features";
+
+      sections.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) {
+          const top = section.offsetTop - 120;
+          if (window.scrollY >= top) {
+            current = id;
+          }
+        }
+      });
+
+      setActive(current);
+
+      // Navbar shrink
+      setScrolled(window.scrollY > 40);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Lock body scroll when menu open
+  useEffect(() => {
+    document.body.classList.toggle("menu-open", menuOpen);
+  }, [menuOpen]);
+
   return (
-    <>
-      <nav className="navbar">
-        <div className="nav-brand">
-          Uni<em>Connect</em>
-        </div>
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+      
+      {/* LOGO */}
+      <div className="nav-brand" onClick={() => navigate("/")}>
+        Uni<em>Connect</em>
+      </div>
 
-        {/* Desktop + Mobile Links */}
-        <div className={`nav-links ${menuOpen ? "active" : ""}`}>
-          <a className="nav-link">Features</a>
-          <a className="nav-link">How it works</a>
-          <a className="nav-link">Modules</a>
-          <a className="nav-link">Stories</a>
+      {/* LINKS */}
+      <div className={`nav-links ${menuOpen ? "active" : ""}`}>
 
-          {/* Mobile Buttons */}
-          <div className="mobile-cta">
-            <button
-              className="btn-ghost"
-              onClick={() => {
-                navigate("/login");
-                setMenuOpen(false); // close menu on click
-              }}
-            >
-              Log in
-            </button>
-
-            <button className="btn-solid" onClick={()=>{
-              navigate("/signup");
-              setMenuOpen(false); 
-            }}>Get Started</button>
-          </div>
-        </div>
-
-        {/* Desktop CTA */}
-        <div className="nav-cta-group desktop-cta">
-          <button
-            className="btn-ghost"
-            onClick={() => navigate("/login")}
-          >
-            Log in
-          </button>
-
-          <button className="btn-solid" onClick={()=> navigate("/signup")}>Get Started</button>
-        </div>
-
-        {/* Hamburger */}
-        <div
-          className={`hamburger ${menuOpen ? "open" : ""}`}
-          onClick={() => setMenuOpen(!menuOpen)}
+        <button
+          className={`nav-link ${active === "features" ? "active" : ""}`}
+          onClick={() => scrollToSection("features")}
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          Features
+        </button>
+
+        <button
+          className={`nav-link ${active === "how" ? "active" : ""}`}
+          onClick={() => scrollToSection("how")}
+        >
+          How it works
+        </button>
+
+        <button
+          className={`nav-link ${active === "modules" ? "active" : ""}`}
+          onClick={() => scrollToSection("modules")}
+        >
+          Modules
+        </button>
+
+        <button
+          className={`nav-link ${active === "testimonial" ? "active" : ""}`}
+          onClick={() => scrollToSection("testimonials")}
+        >
+          Stories
+        </button>
+        <button
+          className={`nav-link ${active === "cta" ? "active" : ""}`}
+          onClick={() => scrollToSection("cta")}
+        >
+          Contact
+        </button>
+
+        {/* MOBILE CTA */}
+        <div className="mobile-cta">
+          <Link to="/login" className="btn-ghost" onClick={() => setMenuOpen(false)}>
+            Log in
+          </Link>
+
+          <Link to="/signup" className="btn-solid" onClick={() => setMenuOpen(false)}>
+            Get Started
+          </Link>
         </div>
-      </nav>
-    </>
+      </div>
+
+      {/* DESKTOP CTA */}
+      <div className="nav-cta-group desktop-cta">
+        <Link to="/login" className="btn-ghost">Log in</Link>
+        <Link to="/signup" className="btn-solid">Get Started</Link>
+      </div>
+
+      {/* HAMBURGER */}
+      <div
+        className={`hamburger ${menuOpen ? "open" : ""}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
   );
 }

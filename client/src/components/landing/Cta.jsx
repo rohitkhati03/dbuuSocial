@@ -13,7 +13,7 @@ export default function CTA(){
 
   return(
     <>
-    <section className="cta-section">
+    <section className="cta-section" id="cta">
       <div className="section-inner">
 
         <div className="cta-card">
@@ -27,7 +27,7 @@ export default function CTA(){
             </h2>
 
             <p className="cta-sub">
-              Join 2,400+ students already on UniConnect.
+              Join 9000+ students already on UniConnect.
               <br />
               It takes less than 2 minutes to get started.
             </p>
