@@ -11,7 +11,7 @@ export default function Hero() {
         {/* ── PILL ── */}
         <div className="hero-pill">
           <span className="hero-pill-dot" />
-          Now live at 3 colleges across Mumbai
+          Now live at your colleges 
         </div>
 
         {/* ── HEADLINE ── */}

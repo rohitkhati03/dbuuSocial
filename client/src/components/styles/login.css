@@ -1,0 +1,638 @@
+/* ─────────────────────────────────────────────
+   ENHANCED CC-LOGIN  ·  Refined Editorial Luxury
+   Fonts: Playfair Display (brand) + DM Sans (UI)
+   Import in your HTML <head>:
+   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+───────────────────────────────────────────── */
+
+/* ── DESIGN TOKENS ── */
+.cc-login {
+  --color-midnight:    #0d1117;
+  --color-navy:        #111827;
+  --color-indigo:      #3d52d5;
+  --color-indigo-dim:  #2a3aaa;
+  --color-indigo-glow: rgba(61, 82, 213, 0.35);
+  --color-gold:        #e4b062;
+  --color-gold-soft:   rgba(228, 176, 98, 0.18);
+  --color-cream:       #faf8f4;
+  --color-cream-dark:  #f2ede5;
+  --color-ink:         #141418;
+  --color-ink-mid:     #4b4b5a;
+  --color-ink-light:   #8a8a9a;
+  --color-border:      #e2ddd5;
+  --color-border-dark: rgba(255,255,255,0.08);
+  --color-white:       #ffffff;
+  --color-error:       #d94f4f;
+  --color-success:     #3daa7a;
+
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-full: 9999px;
+
+  --shadow-card:  0 2px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-input: 0 0 0 3px transparent;
+  --shadow-focus: 0 0 0 3px var(--color-indigo-glow);
+  --shadow-btn:   0 4px 14px rgba(61, 82, 213, 0.4);
+  --shadow-left:  inset -1px 0 0 var(--color-border-dark);
+
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --font-brand: 'Playfair Display', Georgia, serif;
+  --font-ui:    'DM Sans', -apple-system, sans-serif;
+}
+
+/* ── ROOT WRAPPER ── */
+.cc-login {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  width: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+}
+
+/* ── SAFE RESET ── */
+.cc-login * {
+  box-sizing: border-box;
+}
+
+/* ── TYPOGRAPHY ── */
+.cc-login h1,
+.cc-login h2,
+.cc-login h3 {
+  font-family: var(--font-brand);
+  color: var(--color-ink);
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.cc-login p {
+  color: var(--color-ink-mid);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── LAYOUT ── */
+.cc-login__container {
+  display: flex;
+  min-height: 100vh;
+  animation: cc-fadeIn 0.5s var(--ease-smooth) both;
+}
+
+@keyframes cc-fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   LEFT PANEL — Deep midnight with depth
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.cc-login__left {
+  flex: 1.1;
+  padding: 56px 48px;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(61, 82, 213, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 90%, rgba(228, 176, 98, 0.08) 0%, transparent 55%),
+    linear-gradient(160deg, #111827 0%, #0d1117 100%);
+  color: var(--color-white);
+  box-shadow: var(--shadow-left);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  animation: cc-slideInLeft 0.6s var(--ease-smooth) both;
+}
+
+@keyframes cc-slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Subtle noise texture overlay */
+.cc-login__left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Decorative geometric accent */
+.cc-login__left::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(61,82,213,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cc-login__left > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── BRAND ── */
+.cc-login__brand {
+  font-family: var(--font-brand);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cc-login__brand span {
+  color: var(--color-gold);
+}
+
+/* Gold underline accent */
+.cc-login__brand::after {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--color-gold);
+  border-radius: 2px;
+  margin-top: 2px;
+  opacity: 0.7;
+}
+
+/* ── TAGLINE ── */
+.cc-login__tagline {
+  margin: 28px 0 0;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.6);
+  max-width: 320px;
+}
+
+.cc-login__tagline strong {
+  color: rgba(255,255,255,0.88);
+  font-weight: 500;
+}
+
+/* ── CARDS ── */
+.cc-login__cards {
+  margin-top: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cc-login__card {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-white);
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  position: relative;
+  gap: 12px;
+  transition: background 0.2s var(--ease-smooth),
+              border-color 0.2s var(--ease-smooth),
+              transform 0.2s var(--ease-spring);
+  animation: cc-cardIn 0.5s var(--ease-smooth) both;
+}
+
+.cc-login__card:nth-child(1) { animation-delay: 0.15s; }
+.cc-login__card:nth-child(2) { animation-delay: 0.25s; }
+.cc-login__card:nth-child(3) { animation-delay: 0.35s; }
+
+@keyframes cc-cardIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cc-login__card:hover {
+  background: rgba(255,255,255,0.09);
+  border-color: rgba(255,255,255,0.15);
+  transform: translateX(4px);
+}
+
+/* Card text */
+.cc-login__card > div > strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.cc-login__card span {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  display: block;
+  font-weight: 300;
+}
+
+/* ── AVATARS ── */
+.cc-login__avatar {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.cc-login__avatar.blue   { background: rgba(93,124,255,0.25); }
+.cc-login__avatar.pink   { background: rgba(255,120,157,0.22); }
+.cc-login__avatar.yellow { background: rgba(228,176,98,0.22); }
+
+/* ── BADGE ── */
+.cc-login__badge {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  background: var(--color-gold);
+  color: var(--color-midnight);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  line-height: 1.4;
+}
+
+/* ── STATS ── */
+.cc-login__stats {
+  display: flex;
+  gap: 32px;
+  margin-top: auto;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.cc-login__stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cc-login__stats strong {
+  display: block;
+  font-family: var(--font-brand);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: -0.02em;
+}
+
+.cc-login__stats p {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RIGHT PANEL — Warm cream, form focus
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.cc-login__right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-cream);
+  padding: 48px 32px;
+  position: relative;
+  animation: cc-slideInRight 0.6s var(--ease-smooth) both;
+  animation-delay: 0.1s;
+}
+
+@keyframes cc-slideInRight {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Subtle warm pattern */
+.cc-login__right::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(228,176,98,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── FORM BOX ── */
+.cc-login__formBox {
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── HEADING ── */
+.cc-login__formBox > h2 {
+  font-family: var(--font-brand);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+/* Gold accent line under heading */
+.cc-login__formBox > h2::after {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 3px;
+  background: var(--color-gold);
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+/* ── SUBTITLE ── */
+.cc-login__subtitle {
+  color: var(--color-ink-light);
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+/* ── FIELDS ── */
+.cc-login__field {
+  margin-bottom: 14px;
+}
+
+.cc-login__field label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-ink-mid);
+  margin-bottom: 7px;
+}
+
+/* ── INPUT WRAP ── */
+.cc-login__inputWrap {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 11px 14px;
+  gap: 10px;
+  background: var(--color-white);
+  transition: border-color 0.2s var(--ease-smooth),
+              box-shadow 0.2s var(--ease-smooth),
+              background 0.2s var(--ease-smooth);
+}
+
+.cc-login__inputWrap:hover {
+  border-color: #c8c3ba;
+}
+
+.cc-login__inputWrap:focus-within {
+  border-color: var(--color-indigo);
+  box-shadow: var(--shadow-focus);
+  background: var(--color-white);
+}
+
+/* Icon inside input */
+.cc-login__inputWrap .cc-icon {
+  color: var(--color-ink-light);
+  flex-shrink: 0;
+  font-size: 15px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.cc-login__inputWrap:focus-within .cc-icon {
+  color: var(--color-indigo);
+}
+
+.cc-login__inputWrap input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background: transparent;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-ink);
+}
+
+.cc-login__inputWrap input::placeholder {
+  color: var(--color-ink-light);
+  font-weight: 300;
+}
+
+/* ── FORGOT ── */
+.cc-login__forgot {
+  text-align: right;
+  margin-bottom: 6px;
+  margin-top: -4px;
+}
+
+.cc-login__forgot button {
+  border: none;
+  background: none;
+  color: var(--color-indigo);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 0;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+
+.cc-login__forgot button:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ── PRIMARY BUTTON ── */
+.cc-login__btnPrimary {
+  width: 100%;
+  padding: 13px;
+  background: var(--color-indigo);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: var(--shadow-btn);
+  transition: background 0.2s var(--ease-smooth),
+              box-shadow 0.2s var(--ease-smooth),
+              transform 0.15s var(--ease-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer on hover */
+.cc-login__btnPrimary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.4s var(--ease-smooth);
+}
+
+.cc-login__btnPrimary:hover {
+  background: var(--color-indigo-dim);
+  box-shadow: 0 6px 20px rgba(61,82,213,0.5);
+  transform: translateY(-1px);
+}
+
+.cc-login__btnPrimary:hover::after {
+  transform: translateX(100%);
+}
+
+.cc-login__btnPrimary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-btn);
+}
+
+/* ── DIVIDER ── */
+.cc-login__divider {
+  text-align: center;
+  margin: 18px 0;
+  color: var(--color-ink-light);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cc-login__divider::before,
+.cc-login__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* ── SECONDARY BUTTON ── */
+.cc-login__btnSecondary {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s var(--ease-smooth),
+              border-color 0.15s var(--ease-smooth),
+              transform 0.15s var(--ease-spring);
+}
+
+.cc-login__btnSecondary:hover {
+  background: var(--color-cream-dark);
+  border-color: #ccc7be;
+  transform: translateY(-1px);
+}
+
+.cc-login__btnSecondary:active {
+  transform: translateY(0);
+}
+
+/* ── SWITCH ── */
+.cc-login__switch {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 13.5px;
+  color: var(--color-ink-light);
+  font-weight: 300;
+}
+
+.cc-login__switch a {
+  color: var(--color-indigo);
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.cc-login__switch a:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE  📱
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width: 900px) {
+  .cc-login__container {
+    flex-direction: column;
+  }
+
+  /* Show a minimal brand bar on mobile instead of hiding entirely */
+  .cc-login__left {
+    flex: none;
+    padding: 28px 24px;
+    min-height: unset;
+  }
+
+  .cc-login__cards,
+  .cc-login__stats,
+  .cc-login__tagline {
+    display: none;
+  }
+
+  .cc-login__left::after {
+    display: none;
+  }
+
+  .cc-login__right {
+    flex: 1;
+    padding: 40px 24px;
+    align-items: flex-start;
+    padding-top: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cc-login__formBox > h2 {
+    font-size: 26px;
+  }
+
+  .cc-login__right {
+    padding: 28px 20px;
+  }
+}

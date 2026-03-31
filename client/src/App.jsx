@@ -1,36 +1,24 @@
 import React from "react";
-import './App.css'
-import Navbar from './components/layout/Navbar'
-import Footer from './components/layout/Footer'
-import Hero from "./components/landing/Hero";
-import Stats from "./components/landing/Stats";
-import Features from "./components/landing/Features";
-import HowItWorks from "./components/landing/HowItWork";
-import Modules from "./components/landing/Modules";
-import Testimonials from "./components/landing/Testimonials";
-import CTA from "./components/landing/Cta";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Landing from "./components/common/Landing";
+import Navbar from "./components/layout/Navbar";
+import Login from "./components/pages/Login";
+import Signup from "./components/pages/Signup";
 
 function App() {
-  
-
   return (
-    <>
-      <div className="bg-orb orb-1" />
-      <div className="bg-orb orb-2" />
-      <div className="bg-orb orb-3" />
-      <Navbar/>
-      <main>
-        <Hero/>
-        <Stats/>
-        <Features/>
-        <HowItWorks/>
-        <Modules/>
-        <Testimonials/>
-        <CTA/>
-      </main>
-      <Footer/>
-    </>
-  )
+    <BrowserRouter>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Landing/>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
