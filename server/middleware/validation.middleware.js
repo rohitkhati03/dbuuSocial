@@ -42,14 +42,16 @@ export const validateRegister = [
   //email
   body("email")
     .trim()
-    .notEmpty.withMessage("Email is required")
+    .notEmpty()
+    .withMessage("Email is required")
     .isEmail()
     .withMessage("Please provide a valid email")
     .normalizeEmail(), //lowercase+trim
 
   //password
   body("password")
-    .notEmpty.withMessage("Password is required")
+    .notEmpty()
+    .withMessage("Password is required")
     .isLength({ min: 8 })
     .withMessage("Password should be atleast 8 characters")
     .matches(/[A-Z]/)
@@ -83,7 +85,7 @@ export const validateRegister = [
   body("startingYear")
     .notEmpty()
     .withMessage("Starting year is required")
-    .isInt({ min: 2000, max: Date().getFullYear() })
+    .isInt({ min: 2000, max:new Date().getFullYear() })
     .withMessage(
       `Starting year must be between 2000 and ${new Date().getFullYear()}`,
     ),
